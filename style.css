@@ -1,0 +1,315 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #000000;
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Engine Container */
+.engine-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Gear Base Styles */
+.gear {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #333, #555, #333);
+  border: 3px solid #666;
+  box-shadow: 
+    inset 0 0 20px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(255, 77, 77, 0.3);
+}
+
+.gear::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%;
+  height: 30%;
+  background: #222;
+  border-radius: 50%;
+  border: 2px solid #444;
+}
+
+/* Gear Teeth using multiple pseudo-elements */
+.gear::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 16px;
+  background: #555;
+  box-shadow: 
+    0 8px 0 #555,
+    8px 0 0 #555,
+    -8px 0 0 #555,
+    0 -8px 0 #555,
+    12px 12px 0 #555,
+    -12px 12px 0 #555,
+    12px -12px 0 #555,
+    -12px -12px 0 #555;
+}
+
+/* Gear Sizes */
+.gear-large {
+  width: 120px;
+  height: 120px;
+  animation: gearRotateClockwise 8s linear infinite;
+}
+
+.gear-medium {
+  width: 80px;
+  height: 80px;
+  animation: gearRotateCounter 6s linear infinite;
+}
+
+.gear-small {
+  width: 50px;
+  height: 50px;
+  animation: gearRotateClockwise 4s linear infinite;
+}
+
+/* Gear Positions */
+.gear-1 {
+  top: 10%;
+  left: 15%;
+}
+
+.gear-2 {
+  top: 15%;
+  right: 20%;
+}
+
+.gear-3 {
+  top: 40%;
+  left: 5%;
+}
+
+.gear-4 {
+  bottom: 25%;
+  left: 10%;
+}
+
+.gear-5 {
+  bottom: 15%;
+  right: 15%;
+}
+
+.gear-6 {
+  top: 60%;
+  right: 8%;
+}
+
+/* Pistons */
+.piston {
+  position: absolute;
+  width: 20px;
+  height: 100px;
+}
+
+.piston-1 {
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: pistonMove 2s ease-in-out infinite;
+}
+
+.piston-2 {
+  bottom: 20%;
+  right: 30%;
+  animation: pistonMove 2s ease-in-out infinite 1s;
+}
+
+.piston-rod {
+  width: 8px;
+  height: 80px;
+  background: linear-gradient(to right, #666, #888, #666);
+  margin: 0 auto;
+  border-radius: 4px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.piston-head {
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(45deg, #777, #999, #777);
+  border-radius: 50%;
+  margin-top: -10px;
+  border: 2px solid #555;
+  box-shadow: 0 0 10px rgba(255, 77, 77, 0.5);
+}
+
+/* Steam Effects */
+.steam {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: steamRise 4s ease-out infinite;
+}
+
+.steam-1 {
+  top: 80%;
+  left: 20%;
+  animation-delay: 0s;
+}
+
+.steam-2 {
+  top: 85%;
+  right: 25%;
+  animation-delay: 1.5s;
+}
+
+.steam-3 {
+  top: 75%;
+  left: 60%;
+  animation-delay: 3s;
+}
+
+.container {
+  text-align: center;
+  padding: 20px;
+  position: relative;
+  z-index: 10;
+  background: rgba(20, 20, 20, 0.8);
+  border-radius: 20px;
+  backdrop-filter: blur(5px);
+  border: 1px solid #333;
+}
+
+.logo {
+  font-size: 4rem;
+  font-weight: bold;
+  animation: enginePulse 2s ease-in-out infinite;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.logo span {
+  color: #ff4d4d;
+  position: relative;
+}
+
+.coming-soon {
+  font-size: 3rem;
+  font-weight: bold;
+  animation: engineThrust 1.5s ease-in-out infinite;
+  position: relative;
+  letter-spacing: 3px;
+  color: #ffffff;
+}
+
+.subtitle {
+  margin-top: 15px;
+  font-size: 1.2rem;
+  color: #cccccc;
+  opacity: 0.8;
+  animation: dataStream 4s ease-in-out infinite;
+  position: relative;
+  font-family: 'Courier New', monospace;
+}
+
+/* Engine Animation Keyframes */
+@keyframes gearRotateClockwise {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes gearRotateCounter {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes pistonMove {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes steamRise {
+  0% {
+    opacity: 0;
+    transform: translateY(0px) scale(0.5);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translateY(-50px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px) scale(1.5);
+  }
+}
+
+@keyframes enginePulse {
+  0%, 100% {
+    transform: scale(1) translateY(0px);
+  }
+  50% {
+    transform: scale(1.05) translateY(-5px);
+  }
+}
+
+@keyframes engineThrust {
+  0% {
+    transform: translateX(0px) scale(1);
+  }
+  25% {
+    transform: translateX(-2px) scale(1.02);
+  }
+  50% {
+    transform: translateX(0px) scale(1.05);
+  }
+  75% {
+    transform: translateX(2px) scale(1.02);
+  }
+  100% {
+    transform: translateX(0px) scale(1);
+  }
+}
+
+@keyframes dataStream {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
